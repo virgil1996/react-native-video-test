@@ -29,9 +29,10 @@ const bufferConfig = {
 interface Props {
     start: number;
     onFinished: () => void;
+    uri: string;
 }
 
-export const VideoPlayer: React.FC<Props> = function ({ start, onFinished }) {
+export const VideoPlayer: React.FC<Props> = function ({ start, uri, onFinished }) {
     const [loading, setLoading] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const [seekerPosition, setSeekerPosition] = useState(0);
@@ -273,9 +274,7 @@ export const VideoPlayer: React.FC<Props> = function ({ start, onFinished }) {
         <TouchableWithoutFeedback style={styles.player.container}>
             <View style={styles.player.container}>
                 <Video
-                    source={{
-                        uri: 'https://cdn81168665.blazingcdn.net/timeline/hartley-e001-s001a-01-2b6d4c/stream/index.m3u8'
-                    }}
+                    source={{ uri }}
                     ref={primaryRef}
                     resizeMode={'contain'}
                     paused={isPaused}
